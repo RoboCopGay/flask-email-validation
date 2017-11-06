@@ -1,2 +1,2 @@
 # flask-email-validation
-[WIP] Flask email validation template
+[WIP] Email validation template, based on Flask and SQLAlchemy
