@@ -6,30 +6,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from config import BaseConfig
 from utils import *
-
+from db import *
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = BaseConfig.DB_PATH
 app.config['SECRET_KEY'] = BaseConfig.SECRET_KEY
 db = SQLAlchemy(app)
-
-
-class User(db.Model):
-	""" Create user table"""
-
-	__tablename__ = 'User'
-	id = db.Column(db.Integer, primary_key=True)
-	username = db.Column(db.String(80), unique=True)
-	password = db.Column(db.String(80))
-	#email = db.Column(db.String, unique=True, nullable=False)
-	email = db.Column(db.String, nullable=False)
-	activate = db.Column(db.Boolean, nullable=False, default=False)
-	
-	def __init__(self, username, password, email, activate):
-		self.username = username
-		self.password = password
-		self.email = email
-		self.activate = activate
 
 
 @app.route('/')
