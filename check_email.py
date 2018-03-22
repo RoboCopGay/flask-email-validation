@@ -83,14 +83,13 @@ def check_email_validation(email):
 
 def send_mail(email, template):
 
-	f1 = open("email.txt","r")
-	f2 = open("key.txt","r")
 
-	username = f1.readline()
-	password = f2.readline()
-
-	_from = f1.readline()
-	_to  = email
+	with open('email.txt', 'r') as f1:
+		with open('key.txt', 'r') as f2:
+			username = f1.readline()
+			password = f2.readline()
+			_from = f1.readline()
+			_to  = email
 
 	msg = "\r\n".join([
 	  "From: " + _from,
