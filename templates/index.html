@@ -5,12 +5,21 @@
 
 <body>
 
-	<form action="/check_email" method="POST">
-	email: <input type="text" name="email" value=""><br>
-	
-	<input type="submit" value="Submit">
+	<legend>Register</legend>
+	<form action="/register" method="POST">
+		username: <input type="username" name="username" placeholder="Username"><br><br>
+		password: <input type="password" name="password" placeholder="Password"><br><br>
+		email: <input type="text" name="email" value=""><br><br>
+		<input type="submit" value="Submit">
 	</form>
 
+	<br><br><br><br>
+	<legend>Login</legend>
+	<form action="/login" method="POST">
+		username: <input type="username" name="username" placeholder="Username"><br><br>
+		password: <input type="password" name="password" placeholder="Password"><br><br>
+		<input type="submit" value="Submit">
+	</form>
 
 </body>
 </html>
