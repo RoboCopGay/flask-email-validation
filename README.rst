@@ -10,8 +10,8 @@ Usage
 1. create and save your gmail inside ``email.txt``
 2. create and save your password inside ``key.txt``
 3. Go to your gmail, agree to "Access for low secure apps"
-4. ``pip install -r requirements.txt``
-5. execute command : ``python3 main.py``
+4. ``$ pip install -r requirements.txt``
+5. ``$ python3 main.py``
 
 
 Details
