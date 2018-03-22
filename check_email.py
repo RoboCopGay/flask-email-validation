@@ -1,19 +1,16 @@
 #! /usr/bin/env python
 
-import smtplib
-from validate_email import validate_email
-from itsdangerous import URLSafeTimedSerializer
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, url_for, render_template, request, redirect, session
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from config import BaseConfig
+from utils import *
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = BaseConfig.DB_PATH
 app.config['SECRET_KEY'] = BaseConfig.SECRET_KEY
-app.config['SECURITY_PASSWORD_SALT'] = BaseConfig.SECURITY_PASSWORD_SALT
 db = SQLAlchemy(app)
 
 
@@ -33,88 +30,6 @@ class User(db.Model):
 		self.password = password
 		self.email = email
 		self.activate = activate
-
-
-def initial_db():
-	''' 
-		create default user
-	'''
-	# create default user : (username=a, passwd=a)
-	data = User.query.filter_by(username='a').first()
-	if data is None:
-		usr_passwd = generate_password_hash('a')
-		default_user = User(username='a', password=usr_passwd)
-		db.session.add(default_user)
-		db.session.commit()
-
-
-def generate_confirmation_token(email, username):
-	serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-	print('serializer', serializer)
-	
-	return serializer.dumps({'email':email, 'username':username}, salt=app.config['SECURITY_PASSWORD_SALT'])
-
-
-def confirm_token(token, expiration=3600):
-	serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-	try:
-		result = serializer.loads(token, 
-								 salt=app.config['SECURITY_PASSWORD_SALT'],
-								 max_age=expiration)
-	except:
-		return False
-	
-	return result
-
-
-def check_email_validation(email):
-
-	print('email', email)
-
-	# valid = validate_email(email, verify=True)
-	# verify option is for checking if that email exists
-	# default is False
-	# default just examine wether the input email format is correct
-
-	valid = validate_email(email)
-	print('valid', valid)
-	return valid
-
-
-def send_mail(email, template):
-
-
-	with open('email.txt', 'r') as f1:
-		with open('key.txt', 'r') as f2:
-			username = f1.readline()
-			password = f2.readline()
-			_from = f1.readline()
-			_to  = email
-
-	msg = "\r\n".join([
-	  "From: " + _from,
-	  "To: " + email,
-	  "Subject: confirm email",
-	  "",
-	  "send for activate account",
-	  template
-	  ])
-	server = smtplib.SMTP('smtp.gmail.com:587')
-	server.ehlo()
-	server.starttls()
-	server.login(username,password)
-	server.sendmail(_from, _to, msg)
-	server.quit()
-	return
-
-
-def send_confirmation_mail(email, username):
-
-	token = generate_confirmation_token(email, username)
-	confirm_url = url_for('confirm_email', token=token, _external=True)
-	html = render_template('activate.html', confirm_url=confirm_url)
-	send_mail(email, html)
-	return 
 
 
 @app.route('/')
@@ -206,7 +121,6 @@ def confirm_email(token):
 def resend_confirmation():
 
 	send_confirmation_mail(session['email'], session['username'])
-	
 	return 'ok'
 
 
@@ -227,7 +141,6 @@ def add_header(r):
 if __name__ == '__main__':
 	app.debug = True
 	db.create_all()
-	#initial_db()
 	app.run(host='127.0.0.1')
 
 
