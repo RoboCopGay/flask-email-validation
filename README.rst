@@ -1,4 +1,6 @@
-# flask-email-validation
+=============================
+flask-email-validation
+=============================
 Email validation template, based on Flask and SQLAlchemy
 
   TODO: requirements.txt
