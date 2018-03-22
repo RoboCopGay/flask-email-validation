@@ -35,6 +35,7 @@ Reference
 ===========
 
 `How to send an email with Gmail as provider using Python? <https://stackoverflow.com/questions/10147455/how-to-send-an-email-with-gmail-as-provider-using-python/10147497#10147497>`_
+
 `Handling Email Confirmation During Registration in Flask <https://realpython.com/handling-email-confirmation-in-flask/>`_
 
 
