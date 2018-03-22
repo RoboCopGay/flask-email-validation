@@ -27,7 +27,7 @@ Details
 ``utils.py`` for utility functions 
 
 
-Note that it is not save to store your password on the server, for further information, check `this <https://security.stackexchange.com/questions/61627/how-to-store-passwords-securely-in-my-server>`_
+Note that it is not safe to store your password on the server, especially in plain text, for further information, check `this <https://security.stackexchange.com/questions/61627/how-to-store-passwords-securely-in-my-server>`_
 
 In this repo, I don't use `Flask extensions <http://flask.pocoo.org/extensions/>`_ for simplifying my code (and my life OTZ)
 
