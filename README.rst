@@ -9,9 +9,9 @@ Email validation template, based on Flask and SQLAlchemy
 Usage
 ========
 
-1. Create and save your gmail inside ``email.txt``
-2. Create and save your password inside ``key.txt``
-3. Go to your gmail, agree to "Access for low secure apps"
+1. Create and save your gmail in ``email.txt``
+2. Create and save your password in ``key.txt``
+3. Go to your gmail, confirm the "Access for low secure apps" agreement
 4. ``$ pip install -r requirements.txt``
 5. ``$ python3 main.py``
 
