@@ -1,0 +1,13 @@
+Click
+Flask
+Flask-SQLAlchemy
+greenlet
+itsdangerous
+Jinja2
+MarkupSafe
+msgpack
+pynvim
+PyYAML
+SQLAlchemy
+validate-email
+Werkzeug
