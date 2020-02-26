@@ -9,11 +9,10 @@ Email validation template, based on Flask and SQLAlchemy
 Usage
 ========
 
-1. Create and save your gmail in ``email.txt``
-2. Create and save your password in ``key.txt``
-3. Go to your gmail, confirm the "Access for low secure apps" agreement
-4. ``$ pip install -r requirements.txt``
-5. ``$ python3 main.py``
+1. Change the ``email.yml`` with your gmail and your password
+2. Go to your gmail, confirm the "Access for low secure apps" agreement
+3. ``$ pip install -r requirements.txt``
+4. ``$ python3 main.py``
 
 
 Details
@@ -26,6 +25,9 @@ Details
 
 ``utils.py`` for utility functions 
 
+``create_db.py`` initializer for database
+
+``email.yml`` config for email verification
 
 Note that it is not safe to store your password on the server, especially in plain text, for further information, check `this <https://security.stackexchange.com/questions/61627/how-to-store-passwords-securely-in-my-server>`_
 
